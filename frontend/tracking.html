@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Order Tracking - QuickKart</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/products.css">
+  <link rel="stylesheet" href="/css/checkout.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Sticky Site Navigation Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="/" class="brand-logo">
+          <div class="brand-badge">⚡</div>
+          <div class="brand-name">
+            <div class="brand-title">quick<span>kart</span></div>
+            <div class="brand-tagline">10 minute delivery</div>
+          </div>
+        </a>
+
+        <!-- Delivery Location Button -->
+        <div class="location-picker-btn" onclick="openLocationModal()">
+          <div class="location-lead">
+            <span>Delivering to <span id="selected-location-name">Bengaluru</span></span>
+            <span class="location-arrow">▼</span>
+          </div>
+          <div class="location-eta">
+            <span class="eta-pill" id="selected-location-eta">10–15 mins</span>
+            <span class="eta-address" id="selected-location-address">Indiranagar, Bengaluru</span>
+          </div>
+        </div>
+
+        <div style="flex:1;"></div>
+
+        <a href="/products" class="btn-secondary">Browse Store</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Tracking Layout -->
+  <main class="container">
+    <div class="tracking-layout" id="tracking-container">
+      <!-- Populated dynamically by tracking.js -->
+    </div>
+  </main>
+
+  <!-- Location Selector Modal -->
+  <div id="location-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Select Delivery Location</h3>
+        <button class="modal-close-btn" onclick="closeLocationModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:13px; color:#666; margin-bottom:12px;">Choose your Bengaluru locality for instant 10–15 min quick grocery delivery:</p>
+        <div id="modal-location-list" class="location-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/tracking.js"></script>
+<script src="/js/images.js"></script>
+</body>
+</html>

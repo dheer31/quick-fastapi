@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Groceries & Essentials - QuickKart</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/products.css">
+  <link rel="stylesheet" href="/css/cart.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Sticky Site Navigation Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="/" class="brand-logo">
+          <div class="brand-badge">⚡</div>
+          <div class="brand-name">
+            <div class="brand-title">quick<span>kart</span></div>
+            <div class="brand-tagline">10 minute delivery</div>
+          </div>
+        </a>
+
+        <!-- Delivery Location Button -->
+        <div class="location-picker-btn" onclick="openLocationModal()">
+          <div class="location-lead">
+            <span>Delivering to <span id="selected-location-name">Bengaluru</span></span>
+            <span class="location-arrow">▼</span>
+          </div>
+          <div class="location-eta">
+            <span class="eta-pill" id="selected-location-eta">10–15 mins</span>
+            <span class="eta-address" id="selected-location-address">Indiranagar, Bengaluru</span>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-wrapper">
+          <div class="search-input-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="main-search-input" class="search-input" placeholder="Search across all grocery categories..." autocomplete="off">
+            <span id="search-clear-btn" class="search-clear-btn">✕</span>
+          </div>
+          <div id="search-dropdown" class="search-dropdown"></div>
+        </div>
+
+        <!-- Header Cart Button -->
+        <div class="header-cart-btn" onclick="openCartDrawer()">
+          <div class="cart-icon-wrap">
+            <span>🛒</span>
+            <span class="cart-badge-count">0</span>
+          </div>
+          <div class="cart-btn-text">
+            <span class="cart-btn-items">0 items</span>
+            <span class="cart-btn-total">₹0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Product Listing Layout -->
+  <main class="container">
+    <div class="listing-layout">
+      <!-- Left Sidebar: Categories & Filters -->
+      <aside class="listing-sidebar">
+        <h3 class="sidebar-title">Categories</h3>
+        <div class="sidebar-category-list" id="sidebar-categories-list">
+          <!-- Populated by products.js -->
+        </div>
+
+        <div class="filter-section">
+          <h4 class="filter-heading">Filters</h4>
+          <label class="filter-checkbox-label">
+            <input type="checkbox" id="filter-in-stock">
+            <span>In-Stock Only</span>
+          </label>
+          <label class="filter-checkbox-label">
+            <input type="checkbox" id="filter-discount">
+            <span>Special Discounts & Offers</span>
+          </label>
+        </div>
+      </aside>
+
+      <!-- Right Main: Product Grid & Sorting -->
+      <section class="listing-main">
+        <div class="listing-top-bar">
+          <div>
+            <h1 id="listing-page-title" style="font-size:20px; font-weight:800; color:var(--text-primary); margin-bottom:2px;">All Grocery & Essentials</h1>
+            <span class="listing-count" id="listing-total-count">Loading products...</span>
+          </div>
+
+          <div class="listing-sort-wrap">
+            <label for="listing-sort-select" class="sort-label">Sort by:</label>
+            <select id="listing-sort-select" class="sort-select">
+              <option value="popular">Popularity & Rating</option>
+              <option value="price_low">Price: Low to High</option>
+              <option value="price_high">Price: High to Low</option>
+              <option value="discount">Biggest Discount</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Responsive Products Grid -->
+        <div class="products-grid" id="products-grid">
+          <!-- Populated by products.js -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Slide-out Cart Drawer Overlay -->
+  <div id="cart-drawer-overlay" class="cart-drawer-overlay">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <div class="cart-drawer-title-box">
+          <span>🛒</span>
+          <span class="cart-drawer-title">My Cart</span>
+        </div>
+        <div class="cart-drawer-close" onclick="closeCartDrawer()">✕</div>
+      </div>
+      <div id="cart-drawer-content" class="cart-drawer-body"></div>
+      <div id="cart-drawer-footer" class="cart-drawer-footer" style="display:none;">
+        <div class="cart-footer-btn-wrap">
+          <button class="btn-clear-cart" onclick="handleClearCartAction()">Clear</button>
+          <a href="/checkout" class="btn-proceed-checkout">
+            <span>Proceed to Checkout</span>
+            <span id="drawer-footer-total">₹0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Location Selector Modal -->
+  <div id="location-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Select Delivery Location</h3>
+        <button class="modal-close-btn" onclick="closeLocationModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:13px; color:#666; margin-bottom:12px;">Choose your Bengaluru locality for instant 10–15 min quick grocery delivery:</p>
+        <div id="modal-location-list" class="location-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Detail Modal -->
+  <div id="product-detail-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width:680px;">
+      <div class="modal-header">
+        <span style="font-size:13px; font-weight:700; color:var(--primary-green);">⚡ 10 Minute Express Delivery</span>
+        <button class="modal-close-btn" onclick="closeProductDetailModal()">✕</button>
+      </div>
+      <div class="modal-body" id="product-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Mobile Fixed Bottom Cart Bar -->
+  <div id="mobile-cart-bar" class="mobile-cart-bar">
+    <div class="mobile-cart-info">
+      <span id="mobile-cart-count" class="mobile-cart-count">0 ITEMS</span>
+      <span id="mobile-cart-total" class="mobile-cart-total">₹0</span>
+    </div>
+    <button class="mobile-cart-btn" onclick="openCartDrawer()">
+      <span>View Cart</span>
+      <span>🛒</span>
+    </button>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/search.js"></script>
+  <script src="/js/products.js"></script>
+<script src="/js/images.js"></script>
+</body>
+</html>

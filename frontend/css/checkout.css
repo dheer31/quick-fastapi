@@ -1,0 +1,674 @@
+/* Checkout, Order Success & Order Tracking Styles for QuickKart */
+
+/* ==================== CHECKOUT PAGE ==================== */
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 30px;
+  padding: 30px 0 60px;
+}
+
+.checkout-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.checkout-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+}
+
+.checkout-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-green);
+  color: var(--white);
+  font-weight: 800;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-card-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.form-input, .form-textarea, .form-select {
+  padding: 12px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  color: var(--text-primary);
+  background: #FAFBFB;
+  transition: all var(--transition-fast);
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  border-color: var(--primary-green);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(12, 131, 31, 0.1);
+}
+
+.form-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Locality Selection Chips */
+.locality-chips-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.locality-chip {
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--white);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.locality-chip:hover {
+  border-color: var(--primary-green);
+  background: #F4FAF4;
+}
+
+.locality-chip.selected {
+  border-color: var(--primary-green);
+  background: #EDF7EE;
+  color: var(--primary-green);
+  font-weight: 700;
+}
+
+/* Payment Methods */
+.payment-options-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.payment-method-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.payment-method-card:hover {
+  border-color: #B5D8B5;
+}
+
+.payment-method-card.selected {
+  border-color: var(--primary-green);
+  background: #F9FCF9;
+}
+
+.payment-radio {
+  accent-color: var(--primary-green);
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.payment-details {
+  flex: 1;
+}
+
+.payment-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.payment-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.upi-demo-box {
+  margin-top: 14px;
+  padding: 14px;
+  background: #FFFFFF;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.upi-qr-graphic {
+  width: 72px;
+  height: 72px;
+  background: #F1F1F1;
+  border: 1px solid #E0E0E0;
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #333333;
+}
+
+.upi-info-text {
+  font-size: 12px;
+  color: #555555;
+  line-height: 1.4;
+}
+
+.upi-id-badge {
+  font-family: monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary-green);
+  background: #EDF7EE;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+/* Security Trust Badge */
+.security-trust-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 14px;
+}
+
+/* ==================== ORDER SUCCESS ==================== */
+.order-success-section {
+  padding: 40px 0 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.order-success-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.success-icon-wrap {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #E8F5E9;
+  color: var(--primary-green);
+  font-size: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  animation: pulseSuccess 1.5s infinite;
+}
+
+@keyframes pulseSuccess {
+  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(12, 131, 31, 0.4); }
+  70% { transform: scale(1.05); box-shadow: 0 0 0 16px rgba(12, 131, 31, 0); }
+  100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(12, 131, 31, 0); }
+}
+
+.success-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.success-sub {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.order-id-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #F8F9FA;
+  border: 1px dashed var(--border);
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+
+.success-summary-box {
+  background: #FAFBFB;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.success-summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.success-summary-row:last-child {
+  margin-bottom: 0;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.success-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+}
+
+/* ==================== ORDER TRACKING ==================== */
+.tracking-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 30px;
+  padding: 30px 0 60px;
+}
+
+.tracking-main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Live Status Header Banner */
+.tracking-header-card {
+  background: linear-gradient(135deg, #0C831F 0%, #006B19 100%);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 16px rgba(12, 131, 31, 0.25);
+}
+
+.tracking-eta-lead {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+  font-weight: 700;
+}
+
+.tracking-eta-time {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin: 4px 0;
+}
+
+.tracking-current-status-desc {
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+.tracking-rider-chip {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.rider-avatar {
+  font-size: 28px;
+}
+
+.rider-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.rider-name {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.rider-vehicle {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+/* Visual Progress Stepper */
+.progress-stepper-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px 24px;
+}
+
+.stepper-list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.step-item {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  padding-bottom: 28px;
+}
+
+.step-item:last-child {
+  padding-bottom: 0;
+}
+
+.step-indicator-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.step-bullet {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #EAEAEA;
+  color: #888888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 800;
+  z-index: 2;
+  transition: all var(--transition-fast);
+}
+
+.step-item.completed .step-bullet {
+  background: var(--primary-green);
+  color: var(--white);
+}
+
+.step-item.active .step-bullet {
+  background: var(--primary-yellow);
+  color: #1F1F1F;
+  box-shadow: 0 0 0 4px rgba(248, 203, 70, 0.35);
+  animation: pulseStep 1.8s infinite;
+}
+
+@keyframes pulseStep {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.step-connector-line {
+  position: absolute;
+  top: 34px;
+  bottom: 0;
+  width: 3px;
+  background: #EAEAEA;
+  z-index: 1;
+}
+
+.step-item.completed .step-connector-line {
+  background: var(--primary-green);
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  padding-top: 4px;
+}
+
+.step-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #888888;
+}
+
+.step-item.active .step-title,
+.step-item.completed .step-title {
+  color: var(--text-primary);
+}
+
+.step-desc {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.step-time {
+  font-size: 11px;
+  color: #999999;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* Demo Simulation Controller Box */
+.demo-simulation-card {
+  background: #FFFDF0;
+  border: 1.5px solid var(--primary-yellow);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.sim-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.sim-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1F1F1F;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sim-badge {
+  background: var(--primary-yellow);
+  color: #1F1F1F;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.sim-desc {
+  font-size: 13px;
+  color: #555555;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.sim-buttons-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-sim-step {
+  background: var(--primary-green);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 9px 16px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-sim-step:hover {
+  background: var(--dark-green);
+}
+
+.btn-sim-auto {
+  background: #1F1F1F;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 9px 16px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-sim-auto:hover {
+  background: #333333;
+}
+
+.btn-sim-reset {
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 9px 14px;
+  border-radius: var(--radius-sm);
+}
+
+.btn-sim-reset:hover {
+  background: #F5F5F5;
+  color: var(--text-primary);
+}
+
+/* Delivery Route Visualizer Graphic */
+.route-visualizer-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.route-header {
+  font-size: 14px;
+  font-weight: 800;
+  margin-bottom: 14px;
+  color: var(--text-primary);
+}
+
+.map-placeholder-box {
+  width: 100%;
+  height: 160px;
+  background: #E8F0FE;
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.map-path-line {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  right: 20%;
+  height: 3px;
+  background: dashed 2px var(--primary-green);
+  border-top: 3px dashed var(--primary-green);
+}
+
+.map-point-store {
+  position: absolute;
+  left: 15%;
+  top: calc(50% - 18px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-point-rider {
+  position: absolute;
+  left: 50%;
+  top: calc(50% - 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: left 0.5s ease;
+}
+
+.map-point-customer {
+  position: absolute;
+  right: 15%;
+  top: calc(50% - 18px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.point-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #333333;
+  margin-top: 4px;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1px 4px;
+  border-radius: 3px;
+}

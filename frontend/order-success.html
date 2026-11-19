@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Placed Successfully! - QuickKart</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/checkout.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Sticky Site Navigation Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="/" class="brand-logo">
+          <div class="brand-badge">⚡</div>
+          <div class="brand-name">
+            <div class="brand-title">quick<span>kart</span></div>
+            <div class="brand-tagline">10 minute delivery</div>
+          </div>
+        </a>
+        <div style="flex:1;"></div>
+        <a href="/products" class="btn-secondary">Browse Store</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Success Content -->
+  <main class="container">
+    <section class="order-success-section">
+      <div class="order-success-card" id="success-card-content">
+        <div class="success-icon-wrap">✓</div>
+        <h1 class="success-title">Order Placed Successfully!</h1>
+        <p class="success-sub">Your groceries are being packed and will arrive in <strong>10–15 minutes</strong>.</p>
+
+        <div class="order-id-highlight">
+          <span>📦 Order ID:</span>
+          <strong id="success-order-id">Loading...</strong>
+        </div>
+
+        <div class="success-summary-box" id="success-summary-details">
+          <!-- Populated by script -->
+        </div>
+
+        <div class="success-actions">
+          <a href="#" id="track-order-btn" class="btn-primary" style="padding:14px 28px;font-size:15px;">
+            <span>Track Order Live ➔</span>
+          </a>
+          <a href="/products" class="btn-secondary" style="padding:14px 24px;">
+            <span>Continue Shopping</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Toast Notifications Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const orderId = urlParams.get('order_id') || 'QK-2026-DEMO1';
+
+      const orderIdEl = document.getElementById('success-order-id');
+      const trackBtn = document.getElementById('track-order-btn');
+      const summaryBox = document.getElementById('success-summary-details');
+
+      if (orderIdEl) orderIdEl.textContent = orderId;
+      if (trackBtn) trackBtn.href = `/tracking?order_id=${encodeURIComponent(orderId)}`;
+
+      try {
+        const order = await api.getOrder(orderId);
+        if (summaryBox && order) {
+          summaryBox.innerHTML = `
+            <div class="success-summary-row">
+              <span>Customer Name:</span>
+              <span>${order.customer_name}</span>
+            </div>
+            <div class="success-summary-row">
+              <span>Delivery Locality:</span>
+              <span>${order.locality}</span>
+            </div>
+            <div class="success-summary-row">
+              <span>Delivery Address:</span>
+              <span>${order.delivery_address}</span>
+            </div>
+            <div class="success-summary-row">
+              <span>Payment Mode:</span>
+              <span>${order.payment_method}</span>
+            </div>
+            <div class="success-summary-row">
+              <span>Items Ordered:</span>
+              <span>${order.items.length} items (${order.items.map(i => i.name).slice(0, 2).join(', ')}${order.items.length > 2 ? '...' : ''})</span>
+            </div>
+            <div class="success-summary-row" style="padding-top:8px;border-top:1px dashed #ddd;margin-top:8px;">
+              <span>Total Paid:</span>
+              <span style="font-size:16px;color:var(--primary-green);">₹${Math.round(order.grand_total)}</span>
+            </div>
+          `;
+        }
+      } catch (err) {
+        console.error('Could not load order details:', err);
+      }
+    });
+  </script>
+<script src="/js/images.js"></script>
+</body>
+</html>

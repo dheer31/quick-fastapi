@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - QuickKart 10-Minute Delivery</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/products.css">
+  <link rel="stylesheet" href="/css/cart.css">
+  <link rel="stylesheet" href="/css/checkout.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Sticky Site Navigation Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="/" class="brand-logo">
+          <div class="brand-badge">⚡</div>
+          <div class="brand-name">
+            <div class="brand-title">quick<span>kart</span></div>
+            <div class="brand-tagline">10 minute delivery</div>
+          </div>
+        </a>
+
+        <!-- Delivery Location Button -->
+        <div class="location-picker-btn" onclick="openLocationModal()">
+          <div class="location-lead">
+            <span>Delivering to <span id="selected-location-name">Bengaluru</span></span>
+            <span class="location-arrow">▼</span>
+          </div>
+          <div class="location-eta">
+            <span class="eta-pill" id="selected-location-eta">10–15 mins</span>
+            <span class="eta-address" id="selected-location-address">Indiranagar, Bengaluru</span>
+          </div>
+        </div>
+
+        <div style="flex:1;"></div>
+
+        <!-- Back to Cart link -->
+        <a href="/cart" class="btn-secondary" style="display:inline-flex;align-items:center;gap:6px;">
+          <span>← Back to Cart</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Checkout Main Container -->
+  <main class="container">
+    <div class="checkout-layout">
+      <!-- Left Column: Checkout Forms -->
+      <div class="checkout-main">
+        <form id="checkout-form">
+          <!-- Step 1: Delivery Address -->
+          <div class="checkout-card">
+            <div class="checkout-card-header">
+              <span class="step-num">1</span>
+              <h2 class="checkout-card-title">Delivery Address & Contact</h2>
+            </div>
+
+            <!-- Locality Selector Chips -->
+            <div class="form-group">
+              <label class="form-label">Select Bengaluru Locality</label>
+              <div class="locality-chips-wrap" id="checkout-locality-chips"></div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="checkout-name" class="form-label">Full Name *</label>
+                <input type="text" id="checkout-name" class="form-input" placeholder="e.g. Rahul Sharma" required value="Rahul Sharma">
+              </div>
+              <div class="form-group">
+                <label for="checkout-phone" class="form-label">Mobile Number *</label>
+                <input type="tel" id="checkout-phone" class="form-input" placeholder="10-digit mobile number" required value="9876543210" maxlength="10">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="checkout-address" class="form-label">House / Flat / Street Address *</label>
+              <textarea id="checkout-address" class="form-textarea" placeholder="Flat number, building name, street and area" required>Flat 304, Green Heights, 12th Main</textarea>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="checkout-landmark" class="form-label">Landmark (Optional)</label>
+                <input type="text" id="checkout-landmark" class="form-input" placeholder="Near metro station / park" value="Opposite City Cafe">
+              </div>
+              <div class="form-group">
+                <label for="checkout-pincode" class="form-label">Pincode *</label>
+                <input type="text" id="checkout-pincode" class="form-input" placeholder="6-digit pincode" required maxlength="6" value="560038">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="checkout-instructions" class="form-label">Delivery Instructions for Rider</label>
+              <input type="text" id="checkout-instructions" class="form-input" placeholder="e.g. Leave at door, don't ring bell" value="Leave with security at gate">
+            </div>
+          </div>
+
+          <!-- Step 2: Payment Method -->
+          <div class="checkout-card" style="margin-top:20px;">
+            <div class="checkout-card-header">
+              <span class="step-num">2</span>
+              <h2 class="checkout-card-title">Select Payment Mode</h2>
+            </div>
+
+            <div class="payment-options-wrap">
+              <!-- Cash on Delivery Option -->
+              <div class="payment-method-card selected" id="payment-cod-card">
+                <input type="radio" name="payment_method" id="radio-payment-cod" class="payment-radio" value="cod" checked>
+                <div class="payment-details">
+                  <div class="payment-name">Cash on Delivery (COD)</div>
+                  <div class="payment-desc">Pay cash or scan QR on rider's device upon doorstep delivery.</div>
+                </div>
+              </div>
+
+              <!-- Demo UPI Option -->
+              <div class="payment-method-card" id="payment-upi-card">
+                <input type="radio" name="payment_method" id="radio-payment-upi" class="payment-radio" value="upi">
+                <div class="payment-details">
+                  <div class="payment-name">Demo Instant UPI (GPay / PhonePe / Paytm)</div>
+                  <div class="payment-desc">Instant 1-click test simulated UPI authorization.</div>
+
+                  <!-- UPI Demo QR Box -->
+                  <div class="upi-demo-box" id="upi-details-box" style="display:none;">
+                    <div class="upi-qr-graphic">
+                      <span>📱</span>
+                      <span style="font-size:9px;font-weight:700;">TEST QR</span>
+                    </div>
+                    <div class="upi-info-text">
+                      <div>Instant demo sandbox UPI:</div>
+                      <div class="upi-id-badge">quickkart@demo</div>
+                      <div style="font-size:11px;color:#777;margin-top:4px;">No real money deducted. Auto-confirmed instantly.</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right Column: Order Summary Recap -->
+      <aside class="checkout-sidebar">
+        <div class="bill-details-card" id="checkout-order-summary">
+          <!-- Populated by checkout.js -->
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Location Selector Modal -->
+  <div id="location-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Select Delivery Location</h3>
+        <button class="modal-close-btn" onclick="closeLocationModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:13px; color:#666; margin-bottom:12px;">Choose your Bengaluru locality for instant 10–15 min quick grocery delivery:</p>
+        <div id="modal-location-list" class="location-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/checkout.js"></script>
+<script src="/js/images.js"></script>
+</body>
+</html>

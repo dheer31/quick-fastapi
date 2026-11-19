@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickKart - India's 10-Minute Grocery Delivery</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/products.css">
+  <link rel="stylesheet" href="/css/cart.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+
+  <!-- Sticky Site Navigation Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="header-inner">
+        <!-- Logo -->
+        <a href="/" class="brand-logo">
+          <div class="brand-badge">⚡</div>
+          <div class="brand-name">
+            <div class="brand-title">quick<span>kart</span></div>
+            <div class="brand-tagline">10 minute delivery</div>
+          </div>
+        </a>
+
+        <!-- Delivery Location Button -->
+        <div class="location-picker-btn" onclick="openLocationModal()">
+          <div class="location-lead">
+            <span>Delivering to <span id="selected-location-name">Bengaluru</span></span>
+            <span class="location-arrow">▼</span>
+          </div>
+          <div class="location-eta">
+            <span class="eta-pill" id="selected-location-eta">10–15 mins</span>
+            <span class="eta-address" id="selected-location-address">Indiranagar, Bengaluru</span>
+          </div>
+        </div>
+
+        <!-- Functional Search Bar -->
+        <div class="search-wrapper">
+          <div class="search-input-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="main-search-input" class="search-input" placeholder="Search 'milk', 'potato chips', 'atta', 'tomatoes'..." autocomplete="off">
+            <span id="search-clear-btn" class="search-clear-btn">✕</span>
+          </div>
+          <!-- Live Search Suggestions Dropdown -->
+          <div id="search-dropdown" class="search-dropdown"></div>
+        </div>
+
+        <!-- Header Cart Button -->
+        <div class="header-cart-btn" onclick="openCartDrawer()">
+          <div class="cart-icon-wrap">
+            <span>🛒</span>
+            <span class="cart-badge-count">0</span>
+          </div>
+          <div class="cart-btn-text">
+            <span class="cart-btn-items">0 items</span>
+            <span class="cart-btn-total">₹0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Promotional Banner Carousel -->
+  <section class="hero-carousel-section">
+    <div class="container">
+      <div class="carousel-container">
+        <div class="carousel-track" id="hero-carousel-track">
+          <!-- Populated dynamically by home.js -->
+        </div>
+        <button class="carousel-nav-btn carousel-prev" onclick="prevHeroSlide()">❮</button>
+        <button class="carousel-nav-btn carousel-next" onclick="nextHeroSlide()">❯</button>
+        <div class="carousel-indicators" id="hero-carousel-dots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Horizontally Scrollable Categories Strip -->
+  <section class="categories-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Explore by Category</h2>
+        <a href="/products" class="section-see-all">All Categories →</a>
+      </div>
+      <div class="categories-carousel-wrap">
+        <div class="categories-grid" id="categories-grid">
+          <!-- Populated dynamically by home.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 Product Collection Carousels Container -->
+  <div id="collections-container">
+    <!-- Populated dynamically by home.js -->
+  </div>
+
+  <!-- Commercial Quick Commerce Footer -->
+  <footer style="background:#FFFFFF; border-top:1px solid #E8E8E8; padding: 40px 0 30px; margin-top: 50px;">
+    <div class="container">
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px;">
+        <div>
+          <div class="brand-title" style="font-size:22px; margin-bottom:10px;">quick<span>kart</span></div>
+          <p style="font-size:13px; color:#666; line-height:1.5;">India's favorite 10-minute grocery delivery app. Farm-fresh fruits, dairy, snacks, cold drinks and daily essentials delivered in minutes.</p>
+        </div>
+        <div>
+          <h4 style="font-size:14px; font-weight:700; margin-bottom:12px;">Useful Links</h4>
+          <ul style="list-style:none; font-size:13px; color:#666; line-height:2;">
+            <li><a href="/products?category=vegetables-fruits">Fresh Produce</a></li>
+            <li><a href="/products?category=dairy-bread-eggs">Dairy & Eggs</a></li>
+            <li><a href="/products?category=snacks-munchies">Snacks & Munchies</a></li>
+            <li><a href="/tracking">Order Tracking</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-size:14px; font-weight:700; margin-bottom:12px;">Demo Locality Hubs</h4>
+          <ul style="list-style:none; font-size:13px; color:#666; line-height:2;">
+            <li>Indiranagar Dark Store</li>
+            <li>Koramangala Express Hub</li>
+            <li>HSR Layout Hub</li>
+            <li>Whitefield Distribution Center</li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-size:14px; font-weight:700; margin-bottom:12px;">Guaranteed Safety</h4>
+          <p style="font-size:13px; color:#666; line-height:1.5;">⚡ 100% contactless delivery<br>🔒 Safe & verified demo checkout<br>📦 Sealed packaging</p>
+        </div>
+      </div>
+      <div style="text-align:center; padding-top:20px; border-top:1px solid #eee; font-size:12px; color:#888;">
+        © 2026 QuickKart Quick Commerce Demo Application • Inspired by Blinkit UX Design Language.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Slide-out Cart Drawer Overlay -->
+  <div id="cart-drawer-overlay" class="cart-drawer-overlay">
+    <div class="cart-drawer">
+      <div class="cart-drawer-header">
+        <div class="cart-drawer-title-box">
+          <span>🛒</span>
+          <span class="cart-drawer-title">My Cart</span>
+        </div>
+        <div class="cart-drawer-close" onclick="closeCartDrawer()">✕</div>
+      </div>
+      <div id="cart-drawer-content" class="cart-drawer-body">
+        <!-- Rendered by app.js / cart.js -->
+      </div>
+      <div id="cart-drawer-footer" class="cart-drawer-footer" style="display:none;">
+        <div class="cart-footer-btn-wrap">
+          <button class="btn-clear-cart" onclick="handleClearCartAction()">Clear</button>
+          <a href="/checkout" class="btn-proceed-checkout">
+            <span>Proceed to Checkout</span>
+            <span id="drawer-footer-total">₹0</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Location Selector Modal -->
+  <div id="location-modal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">Select Delivery Location</h3>
+        <button class="modal-close-btn" onclick="closeLocationModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:13px; color:#666; margin-bottom:12px;">Choose your Bengaluru locality for instant 10–15 min quick grocery delivery:</p>
+        <div id="modal-location-list" class="location-list">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product Detail Modal -->
+  <div id="product-detail-modal" class="modal-overlay">
+    <div class="modal-card" style="max-width:680px;">
+      <div class="modal-header">
+        <span style="font-size:13px; font-weight:700; color:var(--primary-green);">⚡ 10 Minute Express Delivery</span>
+        <button class="modal-close-btn" onclick="closeProductDetailModal()">✕</button>
+      </div>
+      <div class="modal-body" id="product-modal-body">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Fixed Bottom Cart Bar -->
+  <div id="mobile-cart-bar" class="mobile-cart-bar">
+    <div class="mobile-cart-info">
+      <span id="mobile-cart-count" class="mobile-cart-count">0 ITEMS</span>
+      <span id="mobile-cart-total" class="mobile-cart-total">₹0</span>
+    </div>
+    <button class="mobile-cart-btn" onclick="openCartDrawer()">
+      <span>View Cart</span>
+      <span>🛒</span>
+    </button>
+  </div>
+
+  <!-- Toast Notifications Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/search.js"></script>
+  <script src="/js/home.js"></script>
+<script src="/js/images.js"></script>
+</body>
+</html>
